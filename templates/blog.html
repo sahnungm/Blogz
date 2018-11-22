@@ -1,19 +1,11 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
+
 {% block content %}
-<h1><center> Build a Blog </center></h1>
-
-{% if listings|length == 0 %}
-<p> No entries found </p>
-{% else %}
-    <ul>
-        {% for listing in listings %}
-        <li><h2><a href="/blog?id={{listing.id}}"> {{listing.title}} </a></h2>
-            <p> {{listing.body}} </p>
-            <br>
-            <br>
-        </li>
-        {% endfor %}
-        </ul>
-
-    {% endif %}
+<h1><center> Blogz </center></h1>
+{% for post in posts %}
+    <h2><a href="/blog?id={{post.id}}">{{post.title}}</a></h2>
+    <p>{{post.body}}</p>
+    <p>By <a href="/blog?user={{post.owner.id}}">{{post.owner.username}}</a></p>
+    <hr />
+{% endfor %}
 {% endblock %}
